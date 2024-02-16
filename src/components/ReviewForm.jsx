@@ -4,6 +4,7 @@ import { faBullseye, faLaptopHouse, faXmarkCircle } from '@fortawesome/free-soli
 import {motion, AnimatePresence} from "framer-motion"
 import GoogleIcon from "../assets/icons/google.svg"
 import axios from "axios"
+import getHost from '../../utils/useUrl'
 export default function ReviewForm({reviewFormOpen, setReviewFormOpen, setIsSuccess}) {
     const [user, setUser] = useState(localStorage.getItem('User'))
     const [disabled, setDisabled] = useState(true)
@@ -57,7 +58,7 @@ const handleSubmit = async (e) => {
     setIsLoading(true)
     try {
 
-        const res =  await axios.post("http://localhost:5000/api/reviews",payload)
+        const res =  await axios.post(`${getHost()}/api/reviews`,payload)
         if (res.status===200) {
             setReviewFormOpen(false)
             setIsLoading(false)
@@ -123,7 +124,7 @@ const handleSubmit = async (e) => {
                 {
                     !user &&   <div className='w-full flex justify-center'>
 
-                    <a href={`http://localhost:5000/api/auth/google`}  >
+                    <a href={`${getHost()}/api/auth/google`}  >
                     <div  className='bg-cyan-500 bg-opacity-90 text-white  flex items-center p-2 justify-center gap-4 font-bold text-lg rounded-xl'>
                   
                   <img alt='google' className='w-4 h-4 ' src={GoogleIcon}/>

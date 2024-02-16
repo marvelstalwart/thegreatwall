@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Review from './components/Review'
 import axios from 'axios'
 import ReviewForm from '../../components/ReviewForm'
-
+import getHost from '../../../utils/useUrl'
 export default function Home({reviewFormOpen, setReviewFormOpen}) {
   const [reviews,setReviews] = useState(null)
   const [filteredReviews, setFilteredReviews] = useState(null)
@@ -11,7 +11,7 @@ export default function Home({reviewFormOpen, setReviewFormOpen}) {
   const [searchKeyword, setSearchKeyword] = useState(null)
   
   useEffect(()=> {
-        axios.get("http://localhost:5000/api/reviews").then((res)=> {
+        axios.get(  `${getHost()}/api/reviews`).then((res)=> {
           setReviews(res.data)
         }).catch((err)=> {
           console.error(err)
@@ -21,7 +21,7 @@ export default function Home({reviewFormOpen, setReviewFormOpen}) {
 
      useEffect(()=> {
       if(isSuccess) {
-        axios.get("http://localhost:5000/api/reviews").then((res)=> {
+        axios.get(`${getHost()}/api/reviews`).then((res)=> {
           setReviews(res.data)
         }).catch((err)=> {
           console.error(err)

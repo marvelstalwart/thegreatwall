@@ -3,8 +3,9 @@ import GoogleIcon from "../assets/icons/google.svg"
 import { useParams } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import getHost from '../../utils/useUrl'
 import { faPlus, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+
 export default function Navbar({setReviewFormOpen}) {
 
     const{token} = useParams()
@@ -62,7 +63,7 @@ useEffect(()=> {
                     </div>
                 :
 
-            <a href={`http://localhost:5000/api/auth/google`}>
+            <a href={`${getHost()}/api/auth/google`}>
                             <button  className='bg-white flex items-center justify-center gap-4 font-bold text-lg text-gray-700 rounded-xl'>
                           
                           <img alt='google' className='w-4 h-4 ' src={GoogleIcon}/>
