@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Review from './components/Review'
 import axios from 'axios'
 import ReviewForm from '../../components/ReviewForm'
-import getHost from '../../../utils/useUrl'
+import getHost from '../../utils/useUrl'
 export default function Home({reviewFormOpen, setReviewFormOpen}) {
   const [reviews,setReviews] = useState(null)
   const [filteredReviews, setFilteredReviews] = useState(null)

@@ -4,7 +4,7 @@ import { faBullseye, faLaptopHouse, faXmarkCircle } from '@fortawesome/free-soli
 import {motion, AnimatePresence} from "framer-motion"
 import GoogleIcon from "../assets/icons/google.svg"
 import axios from "axios"
-import getHost from '../../utils/useUrl'
+import getHost from '../utils/useUrl'
 export default function ReviewForm({reviewFormOpen, setReviewFormOpen, setIsSuccess}) {
     const [user, setUser] = useState(localStorage.getItem('User'))
     const [disabled, setDisabled] = useState(true)

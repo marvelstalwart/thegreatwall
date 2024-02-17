@@ -2,7 +2,7 @@ import React , {useEffect, useState, useMemo} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios"
-import getHost from '../../../../utils/useUrl'
+import getHost from '../../../utils/useUrl'
 import { faHeart as HeartRegular } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as HeartLiked } from '@fortawesome/free-solid-svg-icons'
 export default function Review({review}) {
