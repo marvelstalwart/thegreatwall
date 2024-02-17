@@ -52,7 +52,7 @@ const handleDislike = async ()=> {
         useEffect(()=> {
                 const user =JSON.parse(localStorage.getItem('User'))
                 setUser(user)
-                const isLiked =review.likes?.includes(user.id)
+                const isLiked =review.likes?.includes(user?.id)
                 setLiked(isLiked)
         },[])
 
