@@ -19,6 +19,14 @@ const [review, setReview] = useState({
         createdBy: anonChecked? null : user?.id
 
 })
+useEffect(()=> {
+    const user = JSON.parse(localStorage.getItem('User'))
+    if (user){
+        setUser(user)
+    } else{
+        setUser(null)
+    }
+},[])
 
 
 
@@ -42,7 +50,7 @@ const handleChange = (e)=> {
     handleCheckValidity()
 }
 
-const handleSubmit = async (e) => {
+const handleSubmit =  async (e) => {
     e.preventDefault()
     const user = JSON.parse(localStorage.getItem('User'))
     // setUser(user)
@@ -56,9 +64,15 @@ const handleSubmit = async (e) => {
     }
     console.log(review)
     setIsLoading(true)
+    const token = localStorage.getItem('token')
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
     try {
 
-        const res =  await axios.post(`${getHost()}/api/reviews`,payload)
+        const res =  await axios.post(`${getHost()}/api/reviews`,payload, config)
         if (res.status===200) {
             setReviewFormOpen(false)
             setIsLoading(false)
@@ -118,7 +132,7 @@ const handleSubmit = async (e) => {
         onSubmit={handleSubmit}
         className=' w-[80%] h-fit rounded-md absolute  bg-white border border-gray-300  z-10 flex flex-col  gap-2 p-4'> 
         <div className='w-full flex justify-end'>
-                <FontAwesomeIcon className='text-gray-500' icon={faXmarkCircle} onClick={()=> setReviewFormOpen(false)}/>
+                <FontAwesomeIcon className='text-gray-500 cursor-pointer' icon={faXmarkCircle} onClick={()=> setReviewFormOpen(false)}/>
                 </div>
 
                 {
@@ -138,7 +152,7 @@ const handleSubmit = async (e) => {
                 }
              
         <h2 className='tex-start font-semibold text-blue-950'>Let us know how you feel</h2>
-        <input name='name' disabled={true} className='w-full bg-gray-100 p-2 rounded-md outline-none' type='text' placeholder={!anonChecked ? user?.fullName.split(" ")[1]: 'Anon'}/>
+        <input name='name' disabled={true} className='w-full bg-gray-100 p-2 rounded-md outline-none' type='text' placeholder={!anonChecked ? user?.fullName?.split(" ")[1]: 'Anon'}/>
         <input name='vendorName' onChange={handleChange} value={review.vendorName} className='w-full bg-gray-100 p-2 rounded-md outline-none' type='text' placeholder='vendor name'/>
         <textarea onChange={handleChange} value={review.review} name='review' className='w-full bg-gray-100 p-2 rounded-md  outline-none' type='text' placeholder='review'/>
        <div className='w-full flex justify-center gap-2'>
