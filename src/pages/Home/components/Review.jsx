@@ -2,6 +2,7 @@ import React , {useEffect, useState, useMemo} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios"
+import getHost from '../../../utils/useUrl'
 import { faHeart as HeartRegular } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as HeartLiked } from '@fortawesome/free-solid-svg-icons'
 export default function Review({review}) {
@@ -22,11 +23,11 @@ const handleLike = async () => {
             }
         }
         console.log(config)
-        const res = await axios.put(`http://localhost:5000/api/reviews/likes/${review._id}`, {},config)
+        const res = await axios.put(`${getHost()}/api/reviews/likes/${review._id}`, {},config)
         setUpdatedReview(res.data)
 
     }else {
-     window.location.href= "http://localhost:5000/api/auth/google"
+     window.location.href= `${getHost()}/api/auth/google`
     }
 }
 const handleDislike = async ()=> {
@@ -39,11 +40,11 @@ const handleDislike = async ()=> {
                 Authorization: `Bearer ${token}`
             }
         }
-        const res = await axios.put(`http://localhost:5000/api/reviews/likes/${review._id}/unlike`, {},config)
+        const res = await axios.put(`${getHost()}/api/reviews/likes/${review._id}/unlike`, {},config)
         setUpdatedReview(res.data)
 
 } else {
-    window.location.href= "http://localhost:5000/api/auth/google"
+    window.location.href= `${getHost()}/api/auth/google`
    }
 
 }
