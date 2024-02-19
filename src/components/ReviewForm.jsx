@@ -62,7 +62,7 @@ const handleSubmit =  async (e) => {
 
 
     }
-    console.log(review)
+
     setIsLoading(true)
     const token = localStorage.getItem('token')
     const config = {
@@ -105,7 +105,7 @@ const handleSubmit =  async (e) => {
         reviewFormOpen?
         <motion.div 
         
-        className= ' absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full flex justify-center items-center  h-screen bg-white z-20 bg-opacity-80 backdrop-filter transition-all duration-500  backdrop-blur-[2px]'>
+        className= ' fixed  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full flex justify-center items-center  h-screen bg-white z-20 bg-opacity-80 backdrop-filter transition-all duration-500  backdrop-blur-[2px]'>
           
         <motion.form
         
@@ -152,7 +152,7 @@ const handleSubmit =  async (e) => {
                 }
              
         <h2 className='tex-start font-semibold text-blue-950'>Let us know how you feel</h2>
-        <input name='name' disabled={true} className='w-full bg-gray-100 p-2 rounded-md outline-none' type='text' placeholder={!anonChecked ? user?.fullName?.split(" ")[1]: 'Anon'}/>
+        <input name='name' disabled={true} className='w-full bg-gray-100 p-2 rounded-md outline-none' type='text' placeholder={!anonChecked ? user?.fullName?.split(" ")[1]: 'Anonymous'}/>
         <input name='vendorName' onChange={handleChange} value={review.vendorName} className='w-full bg-gray-100 p-2 rounded-md outline-none' type='text' placeholder='vendor name'/>
         <textarea onChange={handleChange} value={review.review} name='review' className='w-full bg-gray-100 p-2 rounded-md  outline-none' type='text' placeholder='review'/>
        <div className='w-full flex justify-center gap-2'>

@@ -26,7 +26,7 @@ useEffect(()=> {
             
             
         // }
-        console.log(profile)
+     
         localStorage.setItem('token', profile.token)
         localStorage.setItem('User', JSON.stringify(profile))
          

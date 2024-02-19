@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import {AnimatePresence, motion} from "framer-motion"
 
-export default function Header({setSearchKeyword}) {
+export default function Header({searchKeyword, setSearchKeyword, handleFilter}) {
 const [showFilter, setShowFilter]  =useState(false)
 const handleToggleFilter = ()=> {
     setShowFilter(!showFilter)
@@ -45,11 +45,11 @@ const handleSearch=(e)=> {
         }}
         className='absolute w-24 top-0 mt-6  bg-white'>
         <ul className='p-2 flex flex-col gap-2'>
-            <li>Today</li>
+            <li onClick={()=>{ handleFilter("today"); handleToggleFilter()   }}>Today</li>
             <div className='w-full h-[0.5px] bg-gray-300'></div>
-            <li>Yesterday</li>
+            <li onClick={()=>{ handleFilter("yesterday"); handleToggleFilter() }}>Yesterday</li>
             <div className='w-full h-[0.5px] bg-gray-300'></div>
-            <li>Last week</li>
+            <li onClick={()=>{ handleFilter("this week"); handleToggleFilter()}}>This week</li>
             <div className='w-full h-[0.5px] bg-gray-300'></div>
             <li>Earlier</li>
         </ul>
@@ -63,7 +63,7 @@ const handleSearch=(e)=> {
     <div className='relative flex items-center'>
         <FontAwesomeIcon  icon={faMagnifyingGlass} className='absolute right-0 p-1 text-gray-200  '/>
 
-    <input onChange={handleSearch} className='rounded-lg px-2 py-1 outline-none shadow-sm' type='text' placeholder='Search vendor' />
+    <input onChange={handleSearch} value={searchKeyword} className='rounded-lg px-2 py-1 outline-none shadow-sm' type='text' placeholder='Search vendor' />
     </div>
    </header>
   )

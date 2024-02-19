@@ -22,7 +22,7 @@ const handleLike = async () => {
                 Authorization: `Bearer ${token}`
             }
         }
-        console.log(config)
+        
         const res = await axios.put(`${getHost()}/api/reviews/likes/${review._id}`, {},config)
         setUpdatedReview(res.data)
 
@@ -66,15 +66,17 @@ const handleDislike = async ()=> {
           const color = useMemo(()=>{
                 return getRandomColor()
           },[])  
-const name = review.createdBy? review.createdBy.split(" ")[1] : 'Anon'
+const name = review.createdBy? review.createdBy.fullname?.split(" ")[1] : "Anonymous"
+
   return ( 
     <div className='p-4 bg-white flex flex-col gap-2 rounded-md'>
         <div className='flex justify-between'>
         
         <div className='flex items-center gap-2'>
         <div className={`${color} text-white w-6 h-6 rounded-full text-center`}> {name[0]}</div>
-                <p className='font-semibold'>{review.createdBy? review.createdBy.split(" ")[1] : <>Anon</>}</p>
+                <p className='font-semibold'>{review.createdBy? review.createdBy.fullname?.split(" ")[1] : <>Anonymous</>}</p>
             </div>
+            {/* TODO Display profile picture */}
         <img className=''/>
         
             <div>
@@ -89,12 +91,12 @@ const name = review.createdBy? review.createdBy.split(" ")[1] : 'Anon'
        
 
         </div>
-                <div className='font-bold text-blue-950'>
-                    {review.vendorName}
-                </div>
 
                 <div>
                     {review.review}
+                </div>
+                <div className='font-bold text-blue-950'>
+                   - {review.vendorName}
                 </div>
                 <div className='flex items-center gap-1 justify-end'>
                    <p>{updatedReview? updatedReview.likes.length:review.likes?.length}</p> 

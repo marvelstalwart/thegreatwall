@@ -7,10 +7,7 @@ import Home from "./pages/Home/Home";
 function App() {
   const [reviewFormOpen, setReviewFormOpen] = useState(false)
 
-  useEffect(()=> {
 
-    console.log(reviewFormOpen)
-    },[reviewFormOpen])
   return (
     <div className="font-nunito">
     
