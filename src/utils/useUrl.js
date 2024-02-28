@@ -4,5 +4,3 @@ export default function getHost() {
     const host = __isProd__ ? 'https://mygiftcardserver.onrender.com' : 'http://localhost:5000'
   return host
 }
-
-
