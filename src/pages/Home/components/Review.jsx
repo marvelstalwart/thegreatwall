@@ -93,13 +93,13 @@ const name = review.createdBy? review.createdBy.fullname?.split(" ")[1] : "Anony
         </div>
 
                 <div>
-                    {review.review}
+                    {review?.review}
                 </div>
                 <div className='font-bold text-blue-950'>
-                   - {review.vendorName}
+                   - {review?.vendorName}
                 </div>
                 <div className='flex items-center gap-1 justify-end'>
-                   <p>{updatedReview? updatedReview.likes.length:review.likes?.length}</p> 
+                   <p>{updatedReview? updatedReview?.likes?.length:review?.likes?.length}</p> 
                    {
                     liked?
                     <FontAwesomeIcon onClick={handleDislike} icon={HeartLiked}  className='text-blue-500'/>
